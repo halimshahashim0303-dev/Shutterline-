@@ -35,7 +35,7 @@ export function drawScaled(img, w, h) {
 
 export function exportName(file, type) {
   const base = (file.name || 'photo').replace(/\.[^.]+$/, '');
-  return `${base}-glow.${type === 'image/png' ? 'png' : 'jpg'}`;
+  return `${base}-shutterline.${type === 'image/png' ? 'png' : 'jpg'}`;
 }
 
 // Render one photo at full size and return a File.

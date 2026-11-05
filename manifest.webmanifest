@@ -1,6 +1,6 @@
 {
-  "name": "Glow Studio – AI Photo Retouch",
-  "short_name": "Glow Studio",
+  "name": "Shutterline – AI Photo Retouch",
+  "short_name": "Shutterline",
   "description": "AI portrait retouching that runs on your device.",
   "start_url": "./",
   "scope": "./",
