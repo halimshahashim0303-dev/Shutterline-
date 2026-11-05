@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Glow Studio</title>
+<meta name="description" content="Free AI portrait retouching that runs entirely on your iPhone and iPad.">
+<meta name="theme-color" content="#0e0f13">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Glow Studio">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <button id="btnOpen" class="icon-btn" aria-label="Open photos">
+      <svg viewBox="0 0 24 24"><path d="M19 7v3h-2V7h-3V5h3V2h2v3h3v2h-3zm-3 4V8h-3V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8h-3zM5 19l3-4 2 3 3-4 4 5H5z"/></svg>
+    </button>
+    <div class="brand">Glow Studio</div>
+    <div class="top-actions">
+      <button id="btnUndo" class="icon-btn" aria-label="Undo" disabled>
+        <svg viewBox="0 0 24 24"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg>
+      </button>
+      <button id="btnRedo" class="icon-btn" aria-label="Redo" disabled>
+        <svg viewBox="0 0 24 24"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/></svg>
+      </button>
+      <button id="btnCompare" class="icon-btn" aria-label="Hold to see the original" disabled>
+        <svg viewBox="0 0 24 24"><path d="M10 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h5v2h2V1h-2v2zm0 15H5l5-6v6zm9-15h-5v2h5v13l-5-6v9h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+      </button>
+      <button id="btnExport" class="pill-btn primary" disabled>
+        <svg viewBox="0 0 24 24"><path d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/></svg>
+        <span>Export</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section id="stage" class="stage">
+      <canvas id="view"></canvas>
+      <div id="empty" class="empty">
+        <div class="empty-card">
+          <div class="empty-badge">AI</div>
+          <h1>Portrait retouching on your device</h1>
+          <p>Smooth skin, remove blemishes, brighten eyes, reshape faces, grade colour and swap backgrounds. Open one photo or a whole set.</p>
+          <button id="btnOpenBig" class="pill-btn primary big">Choose photos</button>
+          <p class="hint">Your photos never leave this device.</p>
+        </div>
+      </div>
+      <div id="status" class="status" hidden></div>
+      <div id="healHint" class="heal-hint" hidden>Tap a blemish to heal it · pinch to zoom in · drag to move when zoomed</div>
+    </section>
+
+    <aside class="panel">
+      <div id="strip" class="strip" hidden></div>
+      <div id="tool" class="tool"></div>
+      <nav id="tabs" class="tabs" role="tablist"></nav>
+    </aside>
+  </main>
+</div>
+
+<input id="file" type="file" accept="image/*" multiple hidden>
+
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-card" role="dialog" aria-labelledby="sheetTitle">
+    <h2 id="sheetTitle">Export</h2>
+    <label class="field">Format
+      <select id="expFormat">
+        <option value="jpeg">JPEG (smaller file)</option>
+        <option value="png">PNG (keeps a removed background transparent)</option>
+      </select>
+    </label>
+    <label class="field">Quality <output id="expQualityOut">92</output>
+      <input id="expQuality" type="range" min="60" max="100" value="92">
+    </label>
+    <label class="field check"><input id="expAll" type="checkbox"> Export all <span id="expCount">1</span> photos</label>
+    <div id="expProgress" class="progress" hidden><div></div></div>
+    <p id="expMsg" class="sheet-msg"></p>
+    <div class="sheet-actions">
+      <button id="expClose" class="pill-btn">Close</button>
+      <button id="expGo" class="pill-btn primary">Export</button>
+      <button id="expSave" class="pill-btn primary" hidden>Save to Photos</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
